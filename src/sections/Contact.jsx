@@ -1,114 +1,180 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Linkedin, Github, Phone, Send } from 'lucide-react';
+import { Mail, Linkedin, Github, Phone, Send, MapPin, Clock, Zap } from 'lucide-react';
+import SectionWrapper, { FadeInView, StaggerContainer } from '../components/ui/SectionWrapper';
+import GlassCard from '../components/ui/GlassCard';
+import Badge from '../components/ui/Badge';
+import GradientButton from '../components/ui/GradientButton';
+
+const contactInfo = [
+  {
+    icon: <Mail size={20} />,
+    title: 'Email',
+    value: 'amdevanand206@gmail.com',
+    href: 'mailto:amdevanand206@gmail.com',
+    gradient: 'from-blue-500 to-cyan-500',
+  },
+  {
+    icon: <Phone size={20} />,
+    title: 'Phone',
+    value: '+91 7339031074',
+    href: 'tel:+917339031074',
+    gradient: 'from-green-500 to-emerald-500',
+  },
+  {
+    icon: <Linkedin size={20} />,
+    title: 'LinkedIn',
+    value: 'dev-anand-ba846a359',
+    href: 'https://linkedin.com/in/dev-anand-ba846a359',
+    gradient: 'from-blue-600 to-blue-400',
+  },
+  {
+    icon: <Github size={20} />,
+    title: 'GitHub',
+    value: 'am-devanand',
+    href: 'https://github.com/am-devanand',
+    gradient: 'from-purple-500 to-pink-500',
+  },
+];
 
 const Contact = () => {
-    return (
-        <section id="contact" className="py-24 bg-secondary/30 relative overflow-hidden">
-            {/* Background decoration */}
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
-            <div className="absolute top-0 right-0 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
+  return (
+    <>
+      <SectionWrapper id="contact" dark>
+        {/* Background */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-accent-blue/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent-purple/5 rounded-full blur-3xl" />
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-16"
-                >
-                    <h2 className="text-4xl md:text-5xl font-bold text-text mb-4">
-                        Let's <span className="bg-gradient-to-r from-accent to-purple-500 bg-clip-text text-transparent">Connect</span>
-                    </h2>
-                    <p className="text-muted text-lg max-w-2xl mx-auto">
-                        Ready to start your next project? Get in touch and let's create something amazing together.
-                    </p>
-                </motion.div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Header */}
+          <FadeInView className="text-center mb-16">
+            <span className="inline-block px-3 py-1 text-[11px] font-semibold tracking-[0.2em] uppercase text-accent-pink bg-accent-pink/10 rounded-full mb-4">
+              Contact
+            </span>
+            <h2 className="text-3xl md:text-5xl font-bold font-heading text-white tracking-tight mb-4">
+              Let's{' '}
+              <span className="gradient-text">connect</span>
+            </h2>
+            <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+              Ready to start your next project? Get in touch and let's create something amazing together.
+            </p>
+          </FadeInView>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                    {/* Contact Info Cards */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5 }}
-                        viewport={{ once: true }}
-                        className="space-y-6"
-                    >
-                        <ContactCard
-                            icon={<Phone size={24} />}
-                            title="Phone"
-                            value="+91 7339031074"
-                            href="tel:+917339031074"
-                            color="from-green-500 to-emerald-500"
-                        />
-                        <ContactCard
-                            icon={<Mail size={24} />}
-                            title="Email"
-                            value="amdevanand206@gmail.com"
-                            href="mailto:amdevanand206@gmail.com"
-                            color="from-red-500 to-orange-500"
-                        />
-                        <ContactCard
-                            icon={<Linkedin size={24} />}
-                            title="LinkedIn"
-                            value="dev-anand-ba846a359"
-                            href="https://linkedin.com/in/dev-anand-ba846a359"
-                            color="from-blue-500 to-cyan-500"
-                        />
-                        <ContactCard
-                            icon={<Github size={24} />}
-                            title="GitHub"
-                            value="am-devanand"
-                            href="https://github.com/am-devanand"
-                            color="from-purple-500 to-pink-500"
-                        />
-                    </motion.div>
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-5xl mx-auto">
+            {/* Contact Info - Left */}
+            <div className="lg:col-span-3 space-y-4">
+              <StaggerContainer className="space-y-4" staggerDelay={0.1}>
+                {contactInfo.map((info) => (
+                  <motion.a
+                    key={info.title}
+                    href={info.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variants={{
+                      hidden: { opacity: 0, x: -20 },
+                      visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
+                    }}
+                    className="group flex items-center gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.05] hover:border-white/20 transition-all duration-300"
+                  >
+                    <div className={`p-3 rounded-xl bg-gradient-to-br ${info.gradient} bg-opacity-20 shrink-0`}>
+                      <div className="text-white">{info.icon}</div>
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-xs text-text-secondary">{info.title}</p>
+                      <p className="text-sm font-medium text-white group-hover:text-accent-blue transition-colors duration-300 truncate">
+                        {info.value}
+                      </p>
+                    </div>
+                  </motion.a>
+                ))}
+              </StaggerContainer>
+            </div>
 
-                    {/* CTA Card */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5 }}
-                        viewport={{ once: true }}
-                        className="bg-gradient-to-br from-accent/10 to-purple-600/10 backdrop-blur-sm rounded-2xl border border-border p-8 flex flex-col justify-center"
-                    >
-                        <h3 className="text-2xl font-bold text-text mb-4">Start a Project</h3>
-                        <p className="text-muted mb-6 leading-relaxed">
-                            Looking for a professional website that stands out? Let's discuss how I can help bring your vision to life with clean code and stunning design.
-                        </p>
-                        <a
-                            href="mailto:amdevanand206@gmail.com?subject=Project Inquiry"
-                            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-accent to-purple-600 text-white rounded-full font-semibold hover:shadow-2xl hover:shadow-accent/30 transition-all transform hover:-translate-y-1"
-                        >
-                            <Send size={18} />
-                            Send a Message
-                        </a>
-                    </motion.div>
+            {/* CTA Card - Right */}
+            <FadeInView direction="right" className="lg:col-span-2">
+              <GlassCard className="p-6 lg:p-8 h-full flex flex-col" glow>
+                {/* Availability */}
+                <div className="flex items-center gap-2 mb-4">
+                  <Badge variant="success" dot>
+                    Available for work
+                  </Badge>
                 </div>
 
-                <footer className="mt-20 text-center text-muted text-sm border-t border-border pt-8">
-                    <p>© {new Date().getFullYear()} DEV ANAND S. Crafted with passion using React & TailwindCSS.</p>
-                </footer>
-            </div>
-        </section>
-    );
-};
+                {/* Response time */}
+                <div className="flex items-center gap-2 text-text-secondary text-sm mb-2">
+                  <Clock size={14} />
+                  <span>Typically responds within 24 hours</span>
+                </div>
 
-const ContactCard = ({ icon, title, value, href, color }) => (
-    <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group flex items-center gap-4 p-4 bg-secondary/50 backdrop-blur-sm rounded-xl border border-border hover:border-accent/50 transition-all"
-    >
-        <div className={`p-3 rounded-xl bg-gradient-to-br ${color}`}>
-            {React.cloneElement(icon, { className: 'text-white' })}
+                {/* Location */}
+                <div className="flex items-center gap-2 text-text-secondary text-sm mb-6">
+                  <MapPin size={14} />
+                  <span>India</span>
+                </div>
+
+                <div className="border-t border-white/[0.06] pt-6 mt-auto">
+                  <h3 className="text-xl font-bold text-white font-heading mb-2">Start a Project</h3>
+                  <p className="text-text-secondary text-sm leading-relaxed mb-6">
+                    Looking for a professional website that stands out? Let's discuss how I can help bring your vision to life.
+                  </p>
+                  <a
+                    href="mailto:amdevanand206@gmail.com?subject=Project Inquiry"
+                    className="relative inline-flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-full text-sm font-semibold text-white overflow-hidden group"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-accent-blue via-accent-purple to-accent-pink opacity-90" />
+                    <div className="absolute -inset-1 bg-gradient-to-r from-accent-blue via-accent-purple to-accent-pink opacity-0 group-hover:opacity-50 blur-lg transition-opacity duration-300" />
+                    <span className="relative z-10 flex items-center gap-2">
+                      <Send size={16} />
+                      Send a Message
+                    </span>
+                  </a>
+                </div>
+              </GlassCard>
+            </FadeInView>
+          </div>
         </div>
-        <div>
-            <p className="text-sm text-muted">{title}</p>
-            <p className="text-text font-medium group-hover:text-accent transition-colors">{value}</p>
+      </SectionWrapper>
+
+      {/* Footer */}
+      <footer className="relative bg-surface-primary border-t border-white/[0.05] py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            {/* Logo */}
+            <span className="text-lg font-bold font-heading tracking-tight">
+              <span className="gradient-text">D</span>ev<span className="gradient-text"> A</span>nand
+            </span>
+
+            {/* Social */}
+            <div className="flex items-center gap-4">
+              {[
+                { icon: <Github size={18} />, href: 'https://github.com/am-devanand', label: 'GitHub' },
+                { icon: <Linkedin size={18} />, href: 'https://linkedin.com/in/dev-anand-ba846a359', label: 'LinkedIn' },
+                { icon: <Mail size={18} />, href: 'mailto:amdevanand206@gmail.com', label: 'Email' },
+              ].map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="p-2.5 rounded-xl text-text-secondary hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 transition-all duration-300"
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
+
+            {/* Copyright */}
+            <p className="text-xs text-text-secondary text-center md:text-right">
+              &copy; {new Date().getFullYear()} Dev Anand S. Made with{' '}
+              <span className="text-accent-pink">React</span> +{' '}
+              <span className="text-accent-blue">Tailwind</span>
+            </p>
+          </div>
         </div>
-    </a>
-);
+      </footer>
+    </>
+  );
+};
 
 export default Contact;
