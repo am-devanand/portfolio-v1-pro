@@ -5,7 +5,7 @@ const SectionWrapper = ({ id, children, className = '', dark = false, ...props }
   return (
     <section
       id={id}
-      className={`relative py-24 md:py-32 overflow-hidden ${dark ? 'bg-surface-secondary/30' : 'bg-surface-primary'} ${className}`}
+      className={`relative py-24 md:py-32 overflow-hidden ${dark ? 'bg-white/[0.02]' : ''} ${className}`}
       {...props}
     >
       {children}
@@ -27,7 +27,7 @@ export const SectionHeader = ({ label, title, description, className = '' }) => 
           {label}
         </span>
       )}
-      <h2 className="text-3xl md:text-5xl font-bold font-heading text-white tracking-tight">
+      <h2 className="text-3xl md:text-5xl font-bold font-heading text-text-primary tracking-tight">
         {title}
       </h2>
       {description && (
