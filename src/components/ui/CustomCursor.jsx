@@ -8,6 +8,7 @@ const CustomCursor = () => {
   useEffect(() => {
     const isFine = window.matchMedia('(pointer:fine)').matches;
     if (!isFine) return;
+    document.body.style.cursor = 'none';
 
     let mx = 0, my = 0;
     let rx = 0, ry = 0;
@@ -54,7 +55,7 @@ const CustomCursor = () => {
         isOnInput = false;
         ring.style.opacity = '1';
         diamond.style.opacity = '1';
-        document.body.style.cursor = '';
+        document.body.style.cursor = 'none';
       }
 
       if (isInteractable(target)) {
