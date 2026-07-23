@@ -143,14 +143,13 @@ const Hero = () => {
         aria-hidden="true"
         className="absolute pointer-events-none select-none"
         style={{
-          bottom: '-2%', left: '-3%',
-          width: 'clamp(220px, 24vw, 340px)',
-          opacity: 0.95,
-          transform: 'rotate(4deg)',
+          bottom: '-3%', left: '2%',
+          width: 'clamp(120px, 14vw, 200px)',
+          opacity: 0.9,
+          transform: 'rotate(-12deg)',
+          borderRadius: '24px',
           mixBlendMode: 'multiply',
-          filter: 'saturate(0) brightness(1.35) contrast(1.2)',
-          maskImage: 'radial-gradient(ellipse 88% 88% at 58% 48%, black 55%, transparent 100%)',
-          WebkitMaskImage: 'radial-gradient(ellipse 88% 88% at 58% 48%, black 55%, transparent 100%)',
+          filter: 'contrast(1.2) brightness(1.1) saturate(0.9)',
           zIndex: 2,
         }}
       />
