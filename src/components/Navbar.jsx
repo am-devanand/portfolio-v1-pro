@@ -33,6 +33,8 @@ const Navbar = () => {
     <>
       <div className="fixed top-0 left-0 right-0 z-[100] flex justify-center pt-4 sm:pt-5 px-4">
         <motion.nav
+          role="navigation"
+          aria-label="Main navigation"
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -63,7 +65,7 @@ const Navbar = () => {
             </Link>
 
             {/* Desktop nav links */}
-            <div className="hidden md:flex items-center gap-0.5">
+            <div className="hidden md:flex items-center gap-0.5" role="tablist" aria-label="Page navigation">
               {navLinks.map((link) => (
                 <NavLink
                   key={link.name}
@@ -75,17 +77,24 @@ const Navbar = () => {
                         : 'text-[#57534E] hover:text-[#7A2E3A]'
                     }`
                   }
+                  aria-label={`Navigate to ${link.name}`}
                 >
                   {({ isActive }) => (
                     <>
                       {link.name}
-                      <span
-                        className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] rounded-full transition-all duration-300"
-                        style={{
-                          width: isActive ? '60%' : '0%',
-                          background: '#7A2E3A',
-                        }}
-                      />
+                      <AnimatePresence mode="popLayout">
+                        {isActive && (
+                          <motion.div
+                            layoutId="nav-indicator"
+                            className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] rounded-full"
+                            style={{ background: '#7A2E3A' }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                          />
+                        )}
+                      </AnimatePresence>
                     </>
                   )}
                 </NavLink>
