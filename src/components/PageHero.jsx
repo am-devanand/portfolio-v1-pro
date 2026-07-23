@@ -70,7 +70,7 @@ const PageHero = ({ label, title, titleAccent, description }) => {
       {/* Bottom border */}
       <div
         className="absolute bottom-0 left-0 right-0 h-px"
-        style={{ background: 'rgba(47,42,38,0.07)' }}
+        style={{ background: 'rgba(210,195,178,0.45)' }}
       />
     </div>
   );

@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <footer
       className="relative z-10 border-t"
-      style={{ borderColor: 'rgba(47,42,38,0.08)', background: '#FCFBF8' }}
+      style={{ borderColor: 'rgba(210,195,178,0.45)', background: '#FCFBF8' }}
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">

@@ -197,7 +197,7 @@ const FeaturedProject = ({ project }) => {
                   </span>
                 ))}
               </div>
-              <div className="flex items-center gap-4 pt-4 border-t border-black/[0.06]">
+              <div className="flex items-center gap-4 pt-4 border-t" style={{ borderColor: 'rgba(210,195,178,0.45)' }}>
                 <a
                   href={project.github}
                   target="_blank"
@@ -242,7 +242,7 @@ const ProjectCard = ({ project, index }) => {
     >
       <TiltCard>
         <GlassCard className="h-full overflow-hidden group" hover>
-          <div className={`relative h-48 ${project.gradient} border-b border-[rgba(47,42,38,0.08)] flex items-center justify-center overflow-hidden`}>
+          <div className={`relative h-48 ${project.gradient} border-b flex items-center justify-center overflow-hidden`} style={{ borderColor: 'rgba(210,195,178,0.45)' }}>
             <div className="absolute inset-0 opacity-10">
               <div className="absolute top-4 left-4 w-20 h-20 border border-white/20 rounded-xl" />
               <div className="absolute bottom-4 right-4 w-16 h-16 border border-white/20 rounded-lg" />
@@ -306,7 +306,7 @@ const ProjectCard = ({ project, index }) => {
               ))}
             </div>
 
-            <div className="flex items-center gap-3 pt-3 border-t border-black/[0.06]">
+            <div className="flex items-center gap-3 pt-3 border-t" style={{ borderColor: 'rgba(210,195,178,0.45)' }}>
               <a
                 href={project.github}
                 target="_blank"

@@ -119,7 +119,7 @@ const Contact = () => {
                   <span>India</span>
                 </div>
 
-                <div className="border-t border-black/[0.06] pt-6 mt-auto">
+                <div className="border-t pt-6 mt-auto" style={{ borderColor: 'rgba(210,195,178,0.45)' }}>
                   <h3 className="text-xl font-bold text-text-primary font-heading mb-2">Start a Project</h3>
                   <p className="text-text-secondary text-sm leading-relaxed mb-6">
                     Looking for a professional website that stands out? Let's discuss how I can help bring your vision to life.
@@ -142,7 +142,7 @@ const Contact = () => {
         </div>
       </SectionWrapper>
 
-      <footer className="relative border-t border-black/[0.05]">
+      <footer className="relative border-t" style={{ borderColor: 'rgba(210,195,178,0.45)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="py-12 flex flex-col items-center gap-8">
             <div className="flex flex-col md:flex-row items-center justify-between w-full gap-8">
@@ -201,7 +201,7 @@ const Contact = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="w-full pt-8 border-t border-black/[0.05] flex flex-col sm:flex-row items-center justify-between gap-4"
+              className="w-full pt-8 border-t flex flex-col sm:flex-row items-center justify-between gap-4" style={{ borderColor: 'rgba(210,195,178,0.45)' }}
             >
               <p className="text-xs text-text-secondary">
                 &copy; {new Date().getFullYear()} DEV. Designed &amp; Developed with React, Tailwind CSS &amp; Framer Motion
