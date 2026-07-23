@@ -52,19 +52,14 @@ const Navbar = () => {
           }}
         >
           <div className="flex items-center justify-between h-14 sm:h-16 px-4 sm:px-6">
-            {/* Logo — "Devanand" with maroon D/A, warm ink ev/nand */}
+            {/* Logo — "DEV" matching home page branding */}
             <Link
               to="/"
-              className="cursor-pointer shrink-0 flex items-center gap-1.5 font-[800] tracking-[0.08em]"
+              className="flex items-center gap-2 pl-1"
               aria-label="Back to home"
             >
-              <span style={{ fontSize: '0.65em', opacity: 0.7, color: '#7A2E3A' }}>&#9670;</span>
-              <span style={{ fontSize: 'clamp(16px, 3.5vw, 22px)', lineHeight: 1, letterSpacing: '0.02em' }}>
-                <span style={{ color: '#7A2E3A' }}>D</span>
-                <span style={{ color: '#2F2A26' }}>ev</span>
-                <span style={{ color: '#7A2E3A' }}>A</span>
-                <span style={{ color: '#2F2A26' }}>nand</span>
-              </span>
+              <span className="inline-block h-3 w-3 rotate-45 bg-accent-blue" />
+              <span className="text-[19px] font-bold tracking-wide text-accent-blue">DEV</span>
             </Link>
 
             {/* Desktop nav links */}

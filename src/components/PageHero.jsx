@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const PageHero = ({ label, title, titleAccent, description }) => {
   return (
-    <div className="relative overflow-hidden" style={{ background: '#F7F4EE' }}>
+    <div className="relative overflow-hidden">
       {/* Subtle radial glow */}
       <div
         className="absolute inset-0 pointer-events-none"
