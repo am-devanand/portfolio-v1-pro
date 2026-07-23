@@ -26,7 +26,8 @@
   }
 
   body {
-    background: #F7F4EE;
+    background: radial-gradient(125% 95% at 50% 32%, #F6F0E5 0%, #EFE7DA 46%, #E6DBCA 100%);
+    background-attachment: fixed;
     color: var(--color-text-primary);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
@@ -59,6 +60,85 @@
   ::selection {
     background: rgba(122, 46, 58, 0.15);
     color: #2F2A26;
+  }
+}
+
+/* ===== REFERENCE DESIGN CUSTOM STYLES ===== */
+
+/* Paper grain overlay on body */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+  mix-blend-mode: multiply;
+  opacity: 0.05;
+}
+
+/* Font classes */
+.ff-sans {
+  font-family: "Satoshi", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-feature-settings: "ss01", "cv01";
+}
+.ff-mono {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* Watermark text stroke */
+.watermark {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(125, 31, 36, 0.09);
+}
+
+/* Dotted pattern */
+.dotted {
+  background-image: radial-gradient(circle, rgba(42, 38, 34, 0.22) 1px, transparent 1.5px);
+  background-size: 11px 11px;
+}
+
+/* ---- Animations ---- */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-9px); }
+}
+@keyframes floaty-x {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(6px, -6px); }
+}
+@keyframes bouncey {
+  0%, 100% { transform: translateY(0); opacity: 0.55; }
+  50%      { transform: translateY(7px); opacity: 1; }
+}
+@keyframes pulseDot {
+  0%   { box-shadow: 0 0 0 0 rgba(46, 156, 84, 0.5); }
+  70%  { box-shadow: 0 0 0 7px rgba(46, 156, 84, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 156, 84, 0); }
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(0deg); }
+  50%      { transform: rotate(1.6deg); }
+}
+
+.reveal     { opacity: 0; animation: rise 0.85s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
+.floaty     { animation: floaty 6.5s ease-in-out infinite; }
+.floaty-slow { animation: floaty 9.5s ease-in-out infinite; }
+.floaty-x   { animation: floaty-x 11s ease-in-out infinite; }
+.bouncey    { animation: bouncey 1.9s ease-in-out infinite; }
+.pulse-dot  { animation: pulseDot 2.4s ease-out infinite; }
+.sway       { transform-origin: top left; animation: sway 7s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .floaty, .floaty-slow, .floaty-x, .bouncey, .pulse-dot, .sway {
+    animation: none;
+    opacity: 1;
   }
 }
 
