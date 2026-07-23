@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
 
 /* ---------- tiny icons ---------- */
 function ArrowUpRight({ className = '' }) {
@@ -239,6 +239,40 @@ function Decor({ pos, float = 'none', rotate = 0, children, z = 3, className = '
         <div style={{ transform: `rotate(${rotate}deg)` }}>{children}</div>
       </div>
     </div>
+  );
+}
+
+/* ---------- rotating tagline ---------- */
+const roles = [
+  'Full Stack Engineer',
+  'Building Scalable Web Products',
+  'React \u2022 Node.js \u2022 Linux',
+  'Software Engineer & Product Builder',
+];
+
+function RotatingRole() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setIndex((i) => (i + 1) % roles.length), 3000);
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <span className="relative inline-block min-w-[10ch] text-center">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={roles[index]}
+          initial={{ y: 10, opacity: 0, filter: 'blur(2px)' }}
+          animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+          exit={{ y: -10, opacity: 0, filter: 'blur(2px)' }}
+          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="block"
+        >
+          {roles[index]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
   );
 }
 
@@ -526,7 +560,7 @@ const Hero = () => {
           style={{ animationDelay: '0.36s', fontSize: 'clamp(1.05rem,2.5vw,1.9rem)' }}
         >
           <span className="text-[#7d1f24]">&lt;</span>
-          Full Stack Developer
+          <RotatingRole />
           <span className="text-[#7d1f24]">/&gt;</span>
         </p>
 
