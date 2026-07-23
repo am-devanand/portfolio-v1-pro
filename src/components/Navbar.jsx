@@ -52,17 +52,19 @@ const Navbar = () => {
           }}
         >
           <div className="flex items-center justify-between h-14 sm:h-16 px-4 sm:px-6">
-            {/* Logo */}
+            {/* Logo — "Devanand" with maroon D/A, warm ink ev/nand */}
             <Link
               to="/"
-              className="cursor-pointer shrink-0 flex items-center gap-1.5 text-xl sm:text-2xl font-[800] tracking-[0.08em] transition-colors duration-300"
-              style={{ color: '#7A2E3A' }}
-              onMouseEnter={e => (e.currentTarget.style.color = '#6B2533')}
-              onMouseLeave={e => (e.currentTarget.style.color = '#7A2E3A')}
+              className="cursor-pointer shrink-0 flex items-center gap-1.5 font-[800] tracking-[0.08em]"
               aria-label="Back to home"
             >
-              <span style={{ fontSize: '0.7em', opacity: 0.8 }}>&#9670;</span>
-              DEV
+              <span style={{ fontSize: '0.65em', opacity: 0.7, color: '#7A2E3A' }}>&#9670;</span>
+              <span style={{ fontSize: 'clamp(16px, 3.5vw, 22px)', lineHeight: 1, letterSpacing: '0.02em' }}>
+                <span style={{ color: '#7A2E3A' }}>D</span>
+                <span style={{ color: '#2F2A26' }}>ev</span>
+                <span style={{ color: '#7A2E3A' }}>A</span>
+                <span style={{ color: '#2F2A26' }}>nand</span>
+              </span>
             </Link>
 
             {/* Desktop nav links */}
@@ -72,14 +74,25 @@ const Navbar = () => {
                   key={link.name}
                   to={link.to}
                   className={({ isActive }) =>
-                    `relative px-3.5 py-1.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${
+                    `relative px-3.5 py-1.5 text-sm font-medium transition-all duration-300 cursor-pointer ${
                       isActive
-                        ? 'text-[#2F2A26] bg-black/5'
-                        : 'text-[#57534E] hover:text-[#2F2A26] hover:bg-black/[0.04]'
+                        ? 'text-[#7A2E3A]'
+                        : 'text-[#57534E] hover:text-[#7A2E3A]'
                     }`
                   }
                 >
-                  {link.name}
+                  {({ isActive }) => (
+                    <>
+                      {link.name}
+                      <span
+                        className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] rounded-full transition-all duration-300"
+                        style={{
+                          width: isActive ? '60%' : '0%',
+                          background: '#7A2E3A',
+                        }}
+                      />
+                    </>
+                  )}
                 </NavLink>
               ))}
             </div>
