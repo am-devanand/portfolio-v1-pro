@@ -15,19 +15,7 @@ function ArrowUpRight({ className = '' }) {
   );
 }
 
-function ArrowDown({ className = '' }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden>
-      <path
-        d="M12 5v14M6 13l6 6 6-6"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
+
 
 function PinIcon({ className = '' }) {
   return (
@@ -536,11 +524,6 @@ const Hero = () => {
         </div>
       </main>
 
-      {/* scroll cue */}
-      <div className="reveal absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1.5 text-[13px] text-[#8a8175]" style={{ animationDelay: '0.7s' }}>
-        <span>Scroll to explore</span>
-        <ArrowDown className="bouncey h-4 w-4" />
-      </div>
     </section>
   );
 };
