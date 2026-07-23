@@ -11,10 +11,12 @@ const githubData = {
   displayName: 'DEV',
   bio: 'A passionate beginner developer eager to become a pro!',
   stats: [
-    { icon: FolderOpen, value: '24', label: 'Public Repositories', color: '#4F8CFF' },
-    { icon: GitCommit, value: '15+', label: 'Months Active', color: '#7C5CFF' },
-    { icon: Code2, value: '5', label: 'Languages Used', color: '#22C55E' },
-    { icon: Star, value: '19', label: 'Original Projects', color: '#EC4899' },
+    { icon: FolderOpen, value: '24', label: 'Repositories', color: '#7A2E3A' },
+    { icon: Code2, value: '5', label: 'Languages', color: '#7A2E3A' },
+    { icon: Calendar, value: '15+', label: 'Experience (months)', color: '#7A2E3A' },
+    { icon: Star, value: '19', label: 'Projects', color: '#7A2E3A' },
+    { icon: GitCommit, value: '500+', label: 'Commits', color: '#7A2E3A' },
+    { icon: Github, value: '28', label: 'Contributions', color: '#7A2E3A' },
   ],
 };
 
@@ -82,7 +84,7 @@ const GitHubShowcase = () => {
           </p>
         </FadeInView>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-16">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-16">
           {githubData.stats.map((stat) => (
             <motion.div
               key={stat.label}

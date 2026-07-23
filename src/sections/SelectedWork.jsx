@@ -124,15 +124,17 @@ const FeaturedProject = ({ project }) => {
         <GlassCard className="overflow-hidden group" hover>
           <div className="grid grid-cols-1 lg:grid-cols-2">
             <div className="relative h-64 lg:h-auto min-h-[320px] bg-[#FCFBF8] border-r border-[rgba(47,42,38,0.08)] flex items-center justify-center overflow-hidden">
-              <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-6 left-6 w-28 h-28 border border-black/10 rounded-xl" />
-                <div className="absolute bottom-6 right-6 w-20 h-20 border border-black/10 rounded-lg" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border border-black/10 rounded-full" />
-                <div className="absolute top-8 right-12 w-14 h-14 border border-white/10 rounded-2xl rotate-12" />
-              </div>
-              <div className="relative z-10 flex flex-col items-center gap-3">
-                <Car size={64} className="text-[#7A2E3A] group-hover:scale-110 transition-transform duration-700" />
-                <Wrench size={32} className="text-[#6A2634] group-hover:scale-110 transition-transform duration-700 -mt-2" />
+              <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute top-6 left-6 w-28 h-28 border border-black/10 rounded-xl transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute bottom-6 right-6 w-20 h-20 border border-black/10 rounded-lg transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border border-black/10 rounded-full transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute top-8 right-12 w-14 h-14 border border-white/10 rounded-2xl rotate-12 transition-transform duration-700 group-hover:scale-110" />
+                </div>
+                <div className="relative z-10 flex flex-col items-center gap-3">
+                  <Car size={64} className="text-[#7A2E3A] group-hover:scale-110 transition-transform duration-700" />
+                  <Wrench size={32} className="text-[#6A2634] group-hover:scale-110 transition-transform duration-700 -mt-2" />
+                </div>
               </div>
               <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                 <a
@@ -202,7 +204,7 @@ const FeaturedProject = ({ project }) => {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-sm font-medium text-text-secondary hover:text-text-primary transition-colors duration-300"
+                  className="flex items-center gap-1.5 text-sm font-medium text-text-secondary hover:text-text-primary opacity-0 group-hover:opacity-100 transition-all duration-400 delay-100"
                 >
                   <Github size={15} />
                   View Code
@@ -211,7 +213,7 @@ const FeaturedProject = ({ project }) => {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="ml-auto flex items-center gap-1 text-sm font-medium text-accent-blue hover:text-accent-blue/80 transition-colors duration-300"
+                  className="ml-auto flex items-center gap-1 text-sm font-medium text-accent-blue hover:text-accent-blue/80 opacity-0 group-hover:opacity-100 transition-all duration-400 delay-200"
                 >
                   Case Study
                   <ArrowUpRight size={13} />
@@ -243,12 +245,13 @@ const ProjectCard = ({ project, index }) => {
       <TiltCard>
         <GlassCard className="h-full overflow-hidden group" hover>
           <div className={`relative h-48 ${project.gradient} border-b flex items-center justify-center overflow-hidden`} style={{ borderColor: 'rgba(210,195,178,0.45)' }}>
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-4 left-4 w-20 h-20 border border-white/20 rounded-xl" />
-              <div className="absolute bottom-4 right-4 w-16 h-16 border border-white/20 rounded-lg" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 border border-white/20 rounded-full" />
-            </div>
-            <div className="relative z-10 text-center">
+            <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute top-4 left-4 w-20 h-20 border border-white/20 rounded-xl" />
+                <div className="absolute bottom-4 right-4 w-16 h-16 border border-white/20 rounded-lg" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 border border-white/20 rounded-full" />
+              </div>
+              <div className="relative z-10 text-center">
               <div 
                 className="text-4xl font-bold font-heading group-hover:scale-110 transition-all duration-500"
                 style={{ color: project.accent }}
@@ -256,6 +259,7 @@ const ProjectCard = ({ project, index }) => {
                 {project.name.charAt(0)}
               </div>
               <p className="text-[11px] mt-1" style={{ color: project.accent, opacity: 0.7 }}>{project.category}</p>
+            </div>
             </div>
             <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
               <a
