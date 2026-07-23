@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { motion, useReducedMotion } from 'framer-motion';
 
 /* ---------- tiny icons ---------- */
 function ArrowUpRight({ className = '' }) {
@@ -218,7 +220,7 @@ function Paperclip({ className = '' }) {
 /* ---------- small building blocks ---------- */
 function TechPill({ label }) {
   return (
-    <span className="group inline-flex items-center gap-2 rounded-full border border-[rgba(42,38,34,0.12)] bg-[#f4eee2]/70 px-4 py-2 text-[13.5px] font-medium text-[#403a33] shadow-[0_2px_0_rgba(42,38,34,0.03)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#7d1f24]/40 hover:bg-[#f6f1e8] hover:shadow-[0_8px_18px_-10px_rgba(125,31,36,.5)]">
+    <span className="group inline-flex items-center gap-2 rounded-full border border-[rgba(42,38,34,0.12)] bg-[#f4eee2]/70 px-4 py-2 text-[13.5px] font-medium text-[#403a33] shadow-[0_2px_0_rgba(42,38,34,0.03)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#7d1f24] hover:bg-[#f6f1e8] hover:shadow-[0_8px_18px_-10px_rgba(125,31,36,.5)]">
       <span className="h-1.5 w-1.5 rounded-full bg-[#7d1f24] transition-transform duration-300 group-hover:scale-125" />
       {label}
     </span>
@@ -242,6 +244,21 @@ function Decor({ pos, float = 'none', rotate = 0, children, z = 3, className = '
 
 /* ---------- page ---------- */
 const Hero = () => {
+  const location = useLocation();
+  const prefersReducedMotion = useReducedMotion();
+  const isReduced = prefersReducedMotion ?? false;
+
+  // First-visit vs return-visit detection
+  const [isFirstVisit, setIsFirstVisit] = React.useState(
+    () => !sessionStorage.getItem('heroVisited'),
+  );
+  React.useEffect(() => {
+    sessionStorage.setItem('heroVisited', 'true');
+    // Mark as "no longer first visit" after animation completes
+    const t = setTimeout(() => setIsFirstVisit(false), 2000);
+    return () => clearTimeout(t);
+  }, []);
+
   const nav = ['About', 'Skills', 'Work', 'Services', 'Journey', 'Contact'];
   const techTop = ['React', 'Node.js', 'Express', 'Python', 'MongoDB', 'MySQL'];
   const techBottom = ['TailwindCSS', 'Linux', 'Git'];
@@ -391,10 +408,10 @@ const Hero = () => {
           </ul>
           <Link
             to="/contact"
-            className="group inline-flex items-center gap-1.5 rounded-full bg-[#7d1f24] px-4 py-2.5 text-[13.5px] font-semibold text-[#f6f1e8] shadow-[0_10px_20px_-10px_rgba(125,31,36,.9)] transition-all duration-300 hover:bg-[#67191d] hover:shadow-[0_14px_24px_-10px_rgba(125,31,36,1)]"
+            className="group inline-flex items-center gap-1.5 rounded-full bg-[#7d1f24] px-4 py-2.5 text-[13.5px] font-semibold text-[#f6f1e8] shadow-[0_10px_20px_-10px_rgba(125,31,36,.9)] transition-all duration-200 hover:bg-[#67191d] hover:shadow-[0_14px_24px_-10px_rgba(125,31,36,1)]"
           >
             Let&rsquo;s Connect
-            <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1" />
           </Link>
         </nav>
       </header>
@@ -423,7 +440,7 @@ const Hero = () => {
         </div>
 
         {/* name */}
-        <div className="reveal relative isolate mt-5" style={{ animationDelay: '0.24s' }}>
+        <div className="relative isolate mt-5">
           <span
             aria-hidden
             className="watermark pointer-events-none absolute left-[-3%] top-1/2 -z-10 -translate-y-1/2 select-none font-black leading-none"
@@ -445,18 +462,55 @@ const Hero = () => {
           >
             S
           </span>
-          <h1
+          <motion.h1
             className="relative z-10 font-black leading-[0.95] tracking-[-0.02em]"
-            style={{ fontSize: 'clamp(3rem,9.4vw,8.6rem)' }}
+            style={{ fontSize: 'clamp(3rem,9.4vw,8.6rem)', caretColor: 'transparent' }}
+            aria-label="Dev Anand S"
           >
-            <span>
-              <span className="text-[#7d1f24]">D</span>ev
-            </span>{' '}
-            <span>
-              <span className="text-[#7d1f24]">A</span>nand
-            </span>{' '}
-            <span className="text-[#7d1f24]">S</span>
-          </h1>
+            <motion.span
+              className="text-[#7d1f24]"
+              initial={{ opacity: 0, y: isFirstVisit && !isReduced ? 18 : 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={isFirstVisit && !isReduced
+                ? { duration: 1, ease: [0.16, 1, 0.3, 1] }
+                : { duration: 0.4 }
+              }
+            >D</motion.span>
+            <motion.span
+              initial={{ opacity: 0, y: isFirstVisit && !isReduced ? 18 : 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={isFirstVisit && !isReduced
+                ? { duration: 1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }
+                : { duration: 0.4 }
+              }
+            >ev</motion.span>{' '}
+            <motion.span
+              className="text-[#7d1f24]"
+              initial={{ opacity: 0, y: isFirstVisit && !isReduced ? 18 : 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={isFirstVisit && !isReduced
+                ? { duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }
+                : { duration: 0.4 }
+              }
+            >A</motion.span>
+            <motion.span
+              initial={{ opacity: 0, y: isFirstVisit && !isReduced ? 18 : 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={isFirstVisit && !isReduced
+                ? { duration: 1, delay: 0.45, ease: [0.16, 1, 0.3, 1] }
+                : { duration: 0.4 }
+              }
+            >nand</motion.span>{' '}
+            <motion.span
+              className="text-[#7d1f24]"
+              initial={{ opacity: 0, y: isFirstVisit && !isReduced ? 18 : 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={isFirstVisit && !isReduced
+                ? { duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }
+                : { duration: 0.4 }
+              }
+            >S</motion.span>
+          </motion.h1>
         </div>
 
         {/* divider */}
@@ -496,14 +550,14 @@ const Hero = () => {
         <div className="reveal mt-9 flex flex-wrap items-center justify-center gap-4" style={{ animationDelay: '0.48s' }}>
           <Link
             to="/work"
-            className="group inline-flex items-center gap-2 rounded-xl bg-[#7d1f24] px-7 py-3.5 text-[15px] font-semibold text-[#f6f1e8] shadow-[0_14px_26px_-12px_rgba(125,31,36,.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#67191d] hover:shadow-[0_20px_32px_-12px_rgba(125,31,36,1)]"
+            className="group inline-flex items-center gap-2 rounded-xl bg-[#7d1f24] px-7 py-3.5 text-[15px] font-semibold text-[#f6f1e8] shadow-[0_14px_26px_-12px_rgba(125,31,36,.95)] transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-[#67191d] hover:shadow-[0_20px_32px_-12px_rgba(125,31,36,1)]"
           >
             Explore Projects
-            <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1" />
           </Link>
           <Link
             to="/contact"
-            className="inline-flex items-center rounded-xl border border-[rgba(42,38,34,0.18)] bg-[#f4eee2]/50 px-7 py-3.5 text-[15px] font-semibold text-[#2a2622] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#7d1f24]/40 hover:bg-[#f6f1e8]"
+            className="inline-flex items-center rounded-xl border border-[rgba(42,38,34,0.18)] bg-[#f4eee2]/50 px-7 py-3.5 text-[15px] font-semibold text-[#2a2622] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#7d1f24]/60 hover:bg-[rgba(122,46,58,0.04)]"
           >
             Let&rsquo;s Connect
           </Link>
