@@ -5,7 +5,7 @@ const SectionWrapper = ({ id, children, className = '', dark = false, ...props }
   return (
     <section
       id={id}
-      className={`relative py-24 md:py-32 overflow-hidden ${dark ? 'bg-white/[0.02]' : ''} ${className}`}
+      className={`relative py-24 md:py-32 overflow-hidden ${dark ? 'bg-black/[0.02]' : ''} ${className}`}
       {...props}
     >
       {children}

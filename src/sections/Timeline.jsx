@@ -9,53 +9,51 @@ const milestones = [
     title: 'GitHub Account Created',
     description: 'Started my journey on GitHub. First repositories were simple experiments — learning version control and exploring what it means to build software.',
     icon: GitFork,
-    color: '#4F8CFF',
+    color: '#7A2E3A',
   },
   {
     year: 'May 2025',
     title: 'First Python Projects',
     description: 'Built snake-game, password-generator, rock-paper-scissors, and Student-management — foundational projects that established my programming fundamentals.',
     icon: Code2,
-    color: '#22C55E',
+    color: '#5B524A',
   },
   {
     year: 'Jul 2025',
     title: 'C++ Exploration',
     description: 'Built a hotel billing system in C++, exploring systems programming and understanding how lower-level languages handle logic and memory.',
     icon: FileCode,
-    color: '#F59E0B',
+    color: '#A3475B',
   },
   {
     year: 'Dec 2025',
     title: 'First Web Application',
     description: 'Developed CityCare — a Flask-based civic complaint system with CSV persistence, multi-admin support, and SMS API integration readiness.',
     icon: Globe,
-    color: '#7C5CFF',
+    color: '#3B322C',
   },
   {
     year: 'Jan 2026',
     title: 'Full-Stack Leap',
     description: 'Built zionex-furniture (Vite + JS), launched this Portfolio (React + Tailwind), and started projectpyexpo — a Django + React full-stack application.',
     icon: Server,
-    color: '#EC4899',
+    color: '#7A2E3A',
   },
   {
     year: 'Apr 2026',
     title: 'Most Advanced Project',
     description: 'Built ClutchD-App — a Next.js on-demand mechanic platform with Docker, environment separation, professional architecture, and CI-ready configuration.',
     icon: Briefcase,
-    color: '#4F8CFF',
+    color: '#5B524A',
   },
 ];
 
 const Timeline = () => {
   return (
     <SectionWrapper id="journey">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-72 h-72 bg-accent-purple/5 rounded-full blur-3xl" />
-
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <FadeInView className="text-center mb-16 md:mb-20">
-          <span className="inline-block px-3 py-1 text-[11px] font-semibold tracking-[0.2em] uppercase text-accent-blue bg-accent-blue/10 rounded-full mb-4">
+        <FadeInView className="text-center mb-14 md:mb-16">
+          <span className="inline-block px-3 py-1 text-[11px] font-semibold tracking-[0.2em] uppercase text-[#7A2E3A] bg-[#7A2E3A]/10 rounded-full mb-4">
             Journey
           </span>
           <h2 className="text-3xl md:text-5xl font-bold font-heading text-text-primary tracking-tight">
@@ -65,7 +63,7 @@ const Timeline = () => {
         </FadeInView>
 
         <div className="relative max-w-4xl mx-auto">
-          <div className="absolute left-[22px] md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-accent-blue via-accent-purple to-accent-pink opacity-20 md:-translate-x-px" />
+          <div className="absolute left-[22px] md:left-1/2 top-0 bottom-0 w-px bg-[rgba(47,42,38,0.08)] opacity-100 md:-translate-x-px" />
 
           <div className="space-y-10 md:space-y-12">
             {milestones.map((item, index) => {
@@ -90,8 +88,16 @@ const Timeline = () => {
                   }`}
                 >
                   <div
-                    className="absolute left-[22px] md:left-1/2 w-12 h-12 rounded-xl -translate-x-1/2 flex items-center justify-center border border-white/10 z-10"
-                    style={{ backgroundColor: `${item.color}15`, color: item.color }}
+                    className="absolute left-[22px] md:left-1/2 w-12 h-12 rounded-xl -translate-x-1/2 flex items-center justify-center border z-10 transition-colors duration-300"
+                    style={{ backgroundColor: '#FFFFFF', borderColor: '#DDD6CE', color: item.color }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = item.color;
+                      e.currentTarget.style.color = '#FFFFFF';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = '#FFFFFF';
+                      e.currentTarget.style.color = item.color;
+                    }}
                   >
                     <Icon size={18} />
                   </div>

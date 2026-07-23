@@ -6,8 +6,8 @@ const GradientButton = ({ children, href, onClick, className = '', variant = 'pr
 
   const variants = {
     primary: 'text-white btn-glow',
-    secondary: 'text-white border border-white/10 hover:border-accent-blue/40 hover:bg-white/5',
-    ghost: 'text-text-secondary hover:text-white hover:bg-white/5',
+    secondary: 'text-text-primary border border-[#D1D5DB] hover:border-accent-blue/40 hover:bg-[rgba(91,91,214,0.06)]',
+    ghost: 'text-text-secondary hover:text-text-primary hover:bg-black/5',
   };
 
   const Component = href ? motion.a : motion.button;

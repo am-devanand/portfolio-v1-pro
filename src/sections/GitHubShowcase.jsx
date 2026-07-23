@@ -134,7 +134,7 @@ const GitHubShowcase = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.06 }}
-              className="block p-5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.05] hover:border-white/20 transition-all duration-300 group"
+              className="block p-5 rounded-xl bg-black/[0.02] border border-black/[0.06] hover:bg-black/[0.05] hover:border-black/20 transition-all duration-300 group"
             >
               <div className="flex items-center gap-2 mb-2">
                 <Github size={16} className="text-text-secondary group-hover:text-accent-blue transition-colors duration-300" />

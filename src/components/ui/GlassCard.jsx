@@ -6,8 +6,8 @@ const GlassCard = ({ children, className = '', glow = false, hover = true, as = 
 
   return (
     <Component
-      className={`relative rounded-2xl border border-white/[0.06] backdrop-blur-sm ${hover ? 'card-hover' : ''} ${glow ? 'glow-blue' : ''} ${className}`}
-      style={{ background: 'rgba(24, 34, 53, 0.75)' }}
+       className={`relative rounded-[20px] border border-[rgba(47,42,38,0.08)] ${hover ? 'card-hover' : 'shadow-[0_16px_40px_rgba(0,0,0,0.08)]'} ${className}`}
+      style={{ background: 'linear-gradient(180deg, #FCFBF8, #F8F5F1)' }}
       {...props}
     >
       {children}

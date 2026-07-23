@@ -1,35 +1,27 @@
 import React from 'react';
-import Navbar from './components/Navbar';
-import SpotlightBackground from './components/ui/SpotlightBackground';
-import Hero from './sections/Hero';
-import WhoIsDEV from './sections/WhoIsDEV';
-import Services from './sections/Services';
-import SelectedWork from './sections/SelectedWork';
-import Philosophy from './sections/Philosophy';
-import TechStack from './sections/TechStack';
-import Timeline from './sections/Timeline';
-import Highlights from './sections/Highlights';
-import GitHubShowcase from './sections/GitHubShowcase';
-import Contact from './sections/Contact';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import HomePage     from './pages/HomePage';
+import AboutPage    from './pages/AboutPage';
+import SkillsPage   from './pages/SkillsPage';
+import WorkPage     from './pages/WorkPage';
+import ServicesPage from './pages/ServicesPage';
+import JourneyPage  from './pages/JourneyPage';
+import ContactPage  from './pages/ContactPage';
 
 function App() {
   return (
-    <div className="relative min-h-screen text-text-primary overflow-hidden">
-      <SpotlightBackground />
-      <Navbar />
-      <main className="relative z-10">
-        <Hero />
-        <WhoIsDEV />
-        <Services />
-        <SelectedWork />
-        <Philosophy />
-        <TechStack />
-        <Timeline />
-        <Highlights />
-        <GitHubShowcase />
-        <Contact />
-      </main>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/"         element={<HomePage />}     />
+        <Route path="/about"    element={<AboutPage />}    />
+        <Route path="/skills"   element={<SkillsPage />}   />
+        <Route path="/work"     element={<WorkPage />}     />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/journey"  element={<JourneyPage />}  />
+        <Route path="/contact"  element={<ContactPage />}  />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

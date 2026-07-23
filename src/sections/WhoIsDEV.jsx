@@ -41,7 +41,7 @@ const About = () => {
               <div className="absolute -top-4 -right-4 w-32 h-32 rounded-2xl bg-accent-blue/10 border border-accent-blue/20 backdrop-blur-sm rotate-6 animate-float" />
               <div className="absolute -bottom-4 -left-4 w-24 h-24 rounded-2xl bg-accent-purple/10 border border-accent-purple/20 backdrop-blur-sm -rotate-3 animate-blob-delayed" />
 
-              <div className="relative rounded-2xl border border-white/10 p-2 overflow-hidden shadow-2xl shadow-black/30">
+              <div className="relative rounded-2xl border border-black/10 p-2 overflow-hidden shadow-2xl shadow-black/10">
                 <div className="absolute inset-0 bg-gradient-to-br from-accent-blue/20 via-transparent to-accent-purple/20 z-10 pointer-events-none" />
                 <img
                   src={profileImg}
@@ -84,7 +84,7 @@ const About = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.04] border border-white/[0.06] hover:bg-white/[0.08] transition-all duration-300 text-sm text-text-secondary hover:text-white"
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-black/[0.02] border border-black/[0.06] hover:bg-black/[0.05] transition-all duration-300 text-sm text-text-secondary hover:text-text-primary"
                   aria-label={link.label}
                 >
                   {link.icon}

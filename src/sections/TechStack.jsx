@@ -81,15 +81,12 @@ const skillItemVariants = {
 const TechStack = () => {
   return (
     <SectionWrapper id="skills">
-      <div className="absolute -top-20 -left-20 w-[500px] h-[500px] bg-accent-purple/[0.04] rounded-full blur-[120px]" />
-      <div className="absolute -bottom-32 right-0 w-[400px] h-[400px] bg-accent-blue/[0.03] rounded-full blur-[100px]" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <FadeInView>
-          <span className="inline-block px-3 py-1 text-[11px] font-semibold tracking-[0.2em] uppercase text-accent-purple bg-accent-purple/10 rounded-full mb-4">
+          <span className="inline-block px-3 py-1 text-[11px] font-semibold tracking-[0.2em] uppercase text-[#7A2E3A] bg-[#7A2E3A]/10 rounded-full mb-4">
             Technology
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold font-heading text-text-primary tracking-tight mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold font-heading text-text-primary tracking-tight mb-14">
             Technologies I{' '}
             <span className="gradient-text">work with</span>
           </h2>
@@ -105,9 +102,9 @@ const TechStack = () => {
               whileInView="visible"
               viewport={{ once: true, margin: '-60px' }}
             >
-              <GlassCard className="p-6 lg:p-8 group/card hover:shadow-[0_0_40px_-8px_rgba(139,92,246,0.15)] transition-shadow duration-500">
+              <GlassCard className="p-6 lg:p-8 group/card transition-shadow duration-500">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2.5 rounded-xl bg-gradient-to-br from-accent-purple/20 to-accent-pink/20 text-accent-purple group-hover/card:shadow-[0_0_20px_-4px_rgba(139,92,246,0.3)] transition-shadow duration-500">
+                  <div className="p-2.5 rounded-xl border border-[rgba(47,42,38,0.08)] text-[#5B524A] group-hover/card:text-[#7A2E3A] transition-colors duration-300" style={{ background: 'linear-gradient(180deg, #FCFBF8, #F8F5F1)' }}>
                     {category.icon}
                   </div>
                   <h3 className="text-lg font-semibold text-text-primary font-heading">
@@ -124,13 +121,13 @@ const TechStack = () => {
                       initial="hidden"
                       whileInView="visible"
                       viewport={{ once: true }}
-                      className="group relative flex items-start gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:bg-white/[0.06] hover:border-accent-purple/30 hover:shadow-[0_0_24px_-6px_rgba(139,92,246,0.2)] transition-all duration-300"
+                      className="group relative flex items-start gap-3 p-3 rounded-[20px] bg-[rgba(255,255,255,0.75)] border border-[#DDD6CE] hover:border-[#7A2E3A] hover:bg-white transition-all duration-300"
                     >
-                      <div className="p-2 rounded-lg bg-white/[0.04] text-text-secondary group-hover:text-accent-purple group-hover:bg-accent-purple/10 group-hover:shadow-[0_0_12px_-2px_rgba(139,92,246,0.25)] transition-all duration-300 shrink-0">
+                      <div className="p-2 rounded-lg bg-[rgba(47,42,38,0.04)] text-[#5B524A] group-hover:text-[#7A2E3A] group-hover:bg-[#7A2E3A]/[0.08] transition-all duration-300 shrink-0">
                         {skill.icon}
                       </div>
                       <div className="min-w-0">
-                        <p className="text-sm font-medium text-text-primary group-hover:text-accent-purple transition-colors duration-300">
+                        <p className="text-sm font-medium text-[#2F2A26] group-hover:text-[#7A2E3A] transition-colors duration-300">
                           {skill.name}
                         </p>
                         <p className="text-[11px] text-text-secondary leading-tight mt-0.5">

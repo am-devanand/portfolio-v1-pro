@@ -11,28 +11,28 @@ const contactInfo = [
     title: 'Email',
     value: 'amdevanand206@gmail.com',
     href: 'mailto:amdevanand206@gmail.com',
-    gradient: 'from-blue-500 to-cyan-500',
+    gradient: 'from-accent-blue to-accent-purple',
   },
   {
     icon: <Phone size={20} />,
     title: 'Phone',
     value: '+91 7339031074',
     href: 'tel:+917339031074',
-    gradient: 'from-green-500 to-emerald-500',
+    gradient: 'from-accent-purple to-accent-pink',
   },
   {
     icon: <Linkedin size={20} />,
     title: 'LinkedIn',
     value: 'dev-anand-ba846a359',
     href: 'https://linkedin.com/in/dev-anand-ba846a359',
-    gradient: 'from-blue-600 to-blue-400',
+    gradient: 'from-[#5B524A] to-[#2F2A26]',
   },
   {
     icon: <Github size={20} />,
     title: 'GitHub',
     value: 'am-devanand',
     href: 'https://github.com/am-devanand',
-    gradient: 'from-purple-500 to-pink-500',
+    gradient: 'from-accent-pink to-accent-blue',
   },
 ];
 
@@ -63,7 +63,7 @@ const Contact = () => {
             <Badge variant="accent" className="bg-accent-pink/10 text-accent-pink border-accent-pink/20 mb-4">
               Contact
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-bold font-heading text-white tracking-tight mb-4">
+            <h2 className="text-3xl md:text-5xl font-bold font-heading text-text-primary tracking-tight mb-4">
               Let's build something{' '}
               <span className="gradient-text">special</span>
             </h2>
@@ -85,14 +85,14 @@ const Contact = () => {
                       hidden: { opacity: 0, x: -20 },
                       visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
                     }}
-                    className="group flex items-center gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.05] hover:border-white/20 transition-all duration-300"
+                    className="group flex items-center gap-4 p-4 rounded-xl bg-black/[0.02] border border-black/[0.06] hover:bg-black/[0.05] hover:border-black/20 transition-all duration-300"
                   >
                     <div className={`p-3 rounded-xl bg-gradient-to-br ${info.gradient} bg-opacity-20 shrink-0`}>
                       <div className="text-white">{info.icon}</div>
                     </div>
                     <div className="min-w-0">
                       <p className="text-xs text-text-secondary">{info.title}</p>
-                      <p className="text-sm font-medium text-white group-hover:text-accent-blue transition-colors duration-300 truncate">
+                      <p className="text-sm font-medium text-text-primary group-hover:text-accent-blue transition-colors duration-300 truncate">
                         {info.value}
                       </p>
                     </div>
@@ -119,8 +119,8 @@ const Contact = () => {
                   <span>India</span>
                 </div>
 
-                <div className="border-t border-white/[0.06] pt-6 mt-auto">
-                  <h3 className="text-xl font-bold text-white font-heading mb-2">Start a Project</h3>
+                <div className="border-t border-black/[0.06] pt-6 mt-auto">
+                  <h3 className="text-xl font-bold text-text-primary font-heading mb-2">Start a Project</h3>
                   <p className="text-text-secondary text-sm leading-relaxed mb-6">
                     Looking for a professional website that stands out? Let's discuss how I can help bring your vision to life.
                   </p>
@@ -142,7 +142,7 @@ const Contact = () => {
         </div>
       </SectionWrapper>
 
-      <footer className="relative border-t border-white/[0.05]">
+      <footer className="relative border-t border-black/[0.05]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="py-12 flex flex-col items-center gap-8">
             <div className="flex flex-col md:flex-row items-center justify-between w-full gap-8">
@@ -167,7 +167,7 @@ const Contact = () => {
                   <a
                     key={link.label}
                     href={link.href}
-                    className="text-sm text-text-secondary hover:text-white transition-colors duration-200"
+                    className="text-sm text-text-secondary hover:text-accent-blue transition-colors duration-200"
                   >
                     {link.label}
                   </a>
@@ -188,7 +188,7 @@ const Contact = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="p-2.5 rounded-xl text-text-secondary hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 transition-all duration-300"
+                    className="p-2.5 rounded-xl text-text-secondary hover:text-text-primary hover:bg-black/5 border border-transparent hover:border-black/10 transition-all duration-300"
                   >
                     {social.icon}
                   </a>
@@ -201,7 +201,7 @@ const Contact = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="w-full pt-8 border-t border-white/[0.05] flex flex-col sm:flex-row items-center justify-between gap-4"
+              className="w-full pt-8 border-t border-black/[0.05] flex flex-col sm:flex-row items-center justify-between gap-4"
             >
               <p className="text-xs text-text-secondary">
                 &copy; {new Date().getFullYear()} DEV. Designed &amp; Developed with React, Tailwind CSS &amp; Framer Motion

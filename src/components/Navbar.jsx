@@ -1,26 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-scroll';
-import { Menu, X } from 'lucide-react';
+import { NavLink, Link, useLocation } from 'react-router-dom';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 const navLinks = [
-  { name: 'About', to: 'about' },
-  { name: 'Skills', to: 'skills' },
-  { name: 'Work', to: 'work' },
-  { name: 'Services', to: 'services' },
-  { name: 'Journey', to: 'journey' },
-  { name: 'Contact', to: 'contact' },
+  { name: 'About',    to: '/about'    },
+  { name: 'Skills',   to: '/skills'   },
+  { name: 'Work',     to: '/work'     },
+  { name: 'Services', to: '/services' },
+  { name: 'Journey',  to: '/journey'  },
+  { name: 'Contact',  to: '/contact'  },
 ];
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen]     = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location                = useLocation();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsOpen(false);
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <>
@@ -33,72 +40,66 @@ const Navbar = () => {
           style={{
             borderRadius: '16px',
             background: scrolled
-              ? 'rgba(10, 15, 30, 0.9)'
-              : 'rgba(10, 15, 30, 0.55)',
-            backdropFilter: 'blur(28px)',
-            WebkitBackdropFilter: 'blur(28px)',
-            border: '1px solid rgba(255, 255, 255, 0.06)',
+              ? 'rgba(255, 255, 255, 0.82)'
+              : 'rgba(255, 255, 255, 0.50)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            border: '1px solid rgba(0, 0, 0, 0.06)',
             boxShadow: scrolled
-              ? '0 8px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.03)'
-              : '0 4px 24px rgba(0, 0, 0, 0.25)',
+              ? '0 4px 24px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(255, 255, 255, 0.8)'
+              : '0 2px 12px rgba(0, 0, 0, 0.02)',
             transition: 'background 0.4s ease, box-shadow 0.4s ease',
           }}
         >
           <div className="flex items-center justify-between h-14 sm:h-16 px-4 sm:px-6">
             {/* Logo */}
             <Link
-              to="hero"
-              smooth={true}
-              duration={600}
-              offset={-80}
-              className="cursor-pointer group shrink-0"
-              aria-label="Back to top"
+              to="/"
+              className="cursor-pointer shrink-0 flex items-center gap-1.5 text-xl sm:text-2xl font-[800] tracking-[0.08em] transition-colors duration-300"
+              style={{ color: '#7A2E3A' }}
+              onMouseEnter={e => (e.currentTarget.style.color = '#6B2533')}
+              onMouseLeave={e => (e.currentTarget.style.color = '#7A2E3A')}
+              aria-label="Back to home"
             >
-              <span className="text-xl sm:text-2xl font-bold font-heading tracking-[0.06em] flex items-baseline gap-0">
-                <span className="gradient-d">D</span>
-                <span className="text-soft-blue-muted">ev</span>
-                <span className="text-soft-blue-muted ml-2 gradient-d">A</span>
-                <span className="text-soft-blue-muted">nand</span>
-              </span>
+              <span style={{ fontSize: '0.7em', opacity: 0.8 }}>&#9670;</span>
+              DEV
             </Link>
 
             {/* Desktop nav links */}
             <div className="hidden md:flex items-center gap-0.5">
               {navLinks.map((link) => (
-                <Link
+                <NavLink
                   key={link.name}
                   to={link.to}
-                  smooth={true}
-                  duration={600}
-                  offset={-80}
-                  spy={true}
-                  activeClass="text-white bg-white/10"
-                  className="relative px-3.5 py-1.5 rounded-full text-sm font-medium text-text-secondary/80 hover:text-white transition-all duration-300 cursor-pointer hover:bg-white/[0.06]"
+                  className={({ isActive }) =>
+                    `relative px-3.5 py-1.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${
+                      isActive
+                        ? 'text-[#2F2A26] bg-black/5'
+                        : 'text-[#57534E] hover:text-[#2F2A26] hover:bg-black/[0.04]'
+                    }`
+                  }
                 >
                   {link.name}
-                </Link>
+                </NavLink>
               ))}
             </div>
 
             {/* Desktop CTA */}
             <div className="hidden md:block shrink-0">
               <Link
-                to="contact"
-                smooth={true}
-                duration={600}
-                offset={-80}
-                className="relative inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold text-white overflow-hidden group cursor-pointer"
+                to="/contact"
+                className="btn-glow relative inline-flex items-center justify-center gap-1.5 px-5 py-2 rounded-[20px] text-sm font-semibold text-white overflow-hidden cursor-pointer"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-accent-blue via-accent-purple to-accent-pink opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute -inset-1 bg-gradient-to-r from-accent-blue via-accent-purple to-accent-pink opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-300" />
-                <span className="relative z-10">Hire Me</span>
+                <span className="relative z-10 text-white">Let&apos;s Connect</span>
+                <ArrowUpRight size={14} className="relative z-10 text-white" />
               </Link>
             </div>
 
             {/* Mobile menu button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden relative z-[110] p-2 text-text-secondary hover:text-white transition-colors"
+              className="md:hidden relative z-[110] p-2 transition-colors"
+              style={{ color: '#5B524A' }}
               aria-label={isOpen ? 'Close menu' : 'Open menu'}
             >
               {isOpen ? <X size={20} /> : <Menu size={20} />}
@@ -119,7 +120,7 @@ const Navbar = () => {
           >
             <div
               className="absolute inset-0"
-              style={{ background: 'rgba(10, 15, 30, 0.96)', backdropFilter: 'blur(32px)' }}
+              style={{ background: 'rgba(255, 255, 255, 0.97)', backdropFilter: 'blur(32px)' }}
               onClick={() => setIsOpen(false)}
             />
             <motion.div
@@ -136,16 +137,17 @@ const Navbar = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.06, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <Link
+                  <NavLink
                     to={link.to}
-                    smooth={true}
-                    duration={600}
-                    offset={-80}
                     onClick={() => setIsOpen(false)}
-                    className="block text-2xl font-heading font-semibold text-white/60 hover:text-white hover:scale-105 transition-all duration-300 py-2 cursor-pointer text-center"
+                    className={({ isActive }) =>
+                      `block text-2xl font-heading font-semibold py-2 cursor-pointer text-center transition-all duration-300 hover:scale-105 ${
+                        isActive ? 'text-[#7A2E3A]' : 'text-[#57534E] hover:text-[#2F2A26]'
+                      }`
+                    }
                   >
                     {link.name}
-                  </Link>
+                  </NavLink>
                 </motion.div>
               ))}
               <motion.div
@@ -155,16 +157,12 @@ const Navbar = () => {
                 className="mt-8"
               >
                 <Link
-                  to="contact"
-                  smooth={true}
-                  duration={600}
-                  offset={-80}
+                  to="/contact"
                   onClick={() => setIsOpen(false)}
-                  className="relative inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-base font-semibold text-white overflow-hidden group cursor-pointer"
+                  className="btn-glow relative inline-flex items-center justify-center gap-1.5 px-8 py-3.5 rounded-[20px] text-base font-semibold text-white overflow-hidden cursor-pointer"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-accent-blue via-accent-purple to-accent-pink opacity-90" />
-                  <div className="absolute -inset-1 bg-gradient-to-r from-accent-blue via-accent-purple to-accent-pink opacity-50 blur-xl" />
-                  <span className="relative z-10">Hire Me</span>
+                  <span className="relative z-10 text-white">Let&apos;s Connect</span>
+                  <ArrowUpRight size={16} className="relative z-10 text-white" />
                 </Link>
               </motion.div>
             </motion.div>
