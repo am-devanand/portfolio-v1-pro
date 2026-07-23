@@ -46,9 +46,14 @@ const Footer = () => {
           </nav>
 
           {/* Copyright */}
-          <p className="text-xs" style={{ color: '#8A8178' }}>
-            © {new Date().getFullYear()} Dev Anand S
-          </p>
+          <div className="text-center sm:text-left">
+            <p className="text-xs" style={{ color: '#8A8178' }}>
+              Crafted with React, TypeScript, and countless cups of coffee.
+            </p>
+            <p className="text-xs" style={{ color: '#8A8178' }}>
+              &copy; {new Date().getFullYear()} Dev Anand
+            </p>
+          </div>
         </div>
       </div>
     </footer>

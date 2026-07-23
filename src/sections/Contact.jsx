@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Linkedin, Github, Phone, Send, MapPin, Clock } from 'lucide-react';
 import SectionWrapper, { FadeInView, StaggerContainer } from '../components/ui/SectionWrapper';
@@ -52,6 +52,15 @@ const socialLinks = [
 ];
 
 const Contact = () => {
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const handleCopyEmail = (e) => {
+    e.preventDefault();
+    navigator.clipboard.writeText('amdevanand206@gmail.com');
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2000);
+  };
+
   return (
     <>
       <SectionWrapper id="contact" dark>
@@ -81,6 +90,7 @@ const Contact = () => {
                     href={info.href}
                     target={info.title === 'Email' || info.title === 'Phone' ? undefined : '_blank'}
                     rel={info.title === 'Email' || info.title === 'Phone' ? undefined : 'noopener noreferrer'}
+                    onClick={info.title === 'Email' ? handleCopyEmail : undefined}
                     variants={{
                       hidden: { opacity: 0, x: -20 },
                       visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
@@ -93,7 +103,7 @@ const Contact = () => {
                     <div className="min-w-0">
                       <p className="text-xs text-text-secondary">{info.title}</p>
                       <p className="text-sm font-medium text-text-primary group-hover:text-accent-blue transition-colors duration-300 truncate">
-                        {info.value}
+                        {info.title === 'Email' && copiedEmail ? '✓ Copied' : info.value}
                       </p>
                     </div>
                   </motion.a>
