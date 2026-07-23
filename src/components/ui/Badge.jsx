@@ -12,7 +12,7 @@ const Badge = ({ children, variant = 'default', className = '', dot = false }) =
     <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium ${variants[variant]} ${className}`}>
       {dot && (
         <span className="relative flex h-1.5 w-1.5">
-          <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#22C55E]" />
+          <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#7A2E3A]" />
         </span>
       )}
       {children}
