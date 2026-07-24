@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
+import { X } from 'lucide-react';
 
 /* ---------- tiny icons ---------- */
 function ArrowUpRight({ className = '' }) {
@@ -293,6 +294,9 @@ const Hero = () => {
     return () => clearTimeout(t);
   }, []);
 
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const closeMobileNav = () => setMobileNavOpen(false);
+
   const nav = ['About', 'Skills', 'Work', 'Services', 'Journey', 'Contact'];
   const techTop = ['React', 'Node.js', 'Express', 'Python', 'MongoDB', 'MySQL'];
   const techBottom = ['TailwindCSS', 'Linux', 'Git'];
@@ -440,15 +444,86 @@ const Hero = () => {
               </li>
             ))}
           </ul>
+          {/* Desktop CTA — hidden on mobile */}
           <Link
             to="/contact"
-            className="group inline-flex items-center gap-1.5 rounded-full bg-[#7d1f24] px-4 py-2.5 text-[13.5px] font-semibold text-[#f6f1e8] shadow-[0_10px_20px_-10px_rgba(125,31,36,.9)] transition-all duration-200 hover:bg-[#67191d] hover:shadow-[0_14px_24px_-10px_rgba(125,31,36,1)]"
+            className="hidden md:inline-flex items-center gap-1.5 rounded-full bg-[#7d1f24] px-4 py-2.5 text-[13.5px] font-semibold text-[#f6f1e8] shadow-[0_10px_20px_-10px_rgba(125,31,36,.9)] transition-all duration-200 hover:bg-[#67191d] hover:shadow-[0_14px_24px_-10px_rgba(125,31,36,1)]"
           >
             Let&rsquo;s Connect
             <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1" />
           </Link>
+
+          {/* Mobile hamburger — hidden on desktop */}
+          <button
+            onClick={() => setMobileNavOpen(true)}
+            className="md:hidden relative flex flex-col items-center justify-center gap-[5px] p-2 min-h-[44px] min-w-[44px] transition-colors hover:opacity-70"
+            aria-label="Open menu"
+            style={{ color: '#4a443c' }}
+          >
+            <span className="block w-5 h-[2px] rounded-full bg-current" />
+            <span className="block w-5 h-[2px] rounded-full bg-current" />
+            <span className="block w-5 h-[2px] rounded-full bg-current" />
+          </button>
         </nav>
       </header>
+
+      {/* Mobile drawer */}
+      <AnimatePresence>
+        {mobileNavOpen && (
+          <>
+            <motion.div
+              key="hero-mobile-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="fixed inset-0 z-[90]"
+              style={{ background: 'rgba(0, 0, 0, 0.3)' }}
+              onClick={closeMobileNav}
+              aria-hidden="true"
+            />
+            <motion.div
+              key="hero-mobile-drawer"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 28, stiffness: 300 }}
+              className="fixed top-0 right-0 h-full w-[280px] max-w-[85vw] z-[95] overflow-y-auto"
+              style={{
+                background: 'rgba(252, 251, 248, 0.98)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+              }}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mobile navigation"
+            >
+              <div className="flex justify-end pt-5 pr-5">
+                <button
+                  onClick={closeMobileNav}
+                  className="p-2 rounded-full transition-colors hover:bg-black/5 min-h-[48px] min-w-[48px] flex items-center justify-center"
+                  style={{ color: '#5B524A' }}
+                  aria-label="Close menu"
+                >
+                  <X size={22} />
+                </button>
+              </div>
+              <div className="flex flex-col px-6 mt-2 gap-1">
+                {nav.map((n) => (
+                  <Link
+                    key={n}
+                    to={routeMap[n]}
+                    onClick={closeMobileNav}
+                    className="flex items-center min-h-[48px] px-4 rounded-lg text-base font-medium text-[#4a443c] hover:text-[#7d1f24] hover:bg-black/5 transition-all duration-200"
+                  >
+                    {n}
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* ===================== HERO ===================== */}
       <main className="relative z-10 flex flex-1 flex-col items-center justify-center py-10 text-center">
