@@ -112,7 +112,7 @@ const TechStack = () => {
                   </h3>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                   {category.skills.map((skill, skillIndex) => (
                     <motion.div
                       key={skill.name}

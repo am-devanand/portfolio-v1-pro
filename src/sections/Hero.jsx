@@ -232,7 +232,7 @@ function Decor({ pos, float = 'none', rotate = 0, children, z = 3, className = '
     float === 'a' ? 'floaty' : float === 'b' ? 'floaty-slow' : float === 'c' ? 'floaty-x' : '';
   return (
     <div
-      className={`pointer-events-none absolute hidden lg:block ${className}`}
+      className={`pointer-events-none absolute hidden md:block ${className}`}
       style={{ ...pos, zIndex: z }}
     >
       <div className={floatClass}>
@@ -309,7 +309,7 @@ const Hero = () => {
   return (
     <section id="hero" className="ff-sans relative flex min-h-screen w-full flex-col overflow-hidden px-4 pb-28 pt-6 text-[#2a2622]">
       {/* ---- faint desk markings ---- */}
-      <div className="pointer-events-none absolute inset-0 z-[1] hidden lg:block">
+      <div className="pointer-events-none absolute inset-0 z-[1] hidden md:block">
         <div className="absolute right-[14%] top-[16%] h-[230px] w-[230px] rounded-full border border-[rgba(42,38,34,0.06)]" />
         <div className="absolute right-[6%] top-[22%] h-[120px] w-[120px] rounded-full border border-[rgba(42,38,34,0.05)]" />
         <div className="absolute bottom-[8%] left-[12%] h-[200px] w-[200px] rounded-full border border-[rgba(42,38,34,0.05)]" />
@@ -454,7 +454,7 @@ const Hero = () => {
       <main className="relative z-10 flex flex-1 flex-col items-center justify-center py-10 text-center">
         {/* availability */}
         <div
-          className="reveal inline-flex items-center gap-2 rounded-full border border-[rgba(42,38,34,0.12)] bg-[#f4eee2]/70 px-4 py-1.5 text-[13px] font-medium text-[#4a443c]"
+          className="reveal inline-flex items-center gap-2 rounded-full border border-[rgba(42,38,34,0.12)] bg-[#f4eee2]/70 px-4 py-1.5 text-[12px] sm:text-[13px] font-medium text-[#4a443c]"
           style={{ animationDelay: '0.12s' }}
         >
           <span className="pulse-dot h-2 w-2 rounded-full bg-[#2e9c54]" />
@@ -462,11 +462,11 @@ const Hero = () => {
         </div>
 
         {/* hello label */}
-        <div className="reveal mt-9 flex items-center gap-3" style={{ animationDelay: '0.18s' }}>
-          <span className="ff-mono text-[12px] text-[#a59c8e]">01</span>
-          <span className="h-px w-8 bg-[rgba(42,38,34,0.3)]" />
+        <div className="reveal mt-6 sm:mt-9 flex items-center gap-2 sm:gap-3" style={{ animationDelay: '0.18s' }}>
+          <span className="ff-mono text-[11px] sm:text-[12px] text-[#a59c8e]">01</span>
+          <span className="h-px w-6 sm:w-8 bg-[rgba(42,38,34,0.3)]" />
           <div className="flex flex-col items-center">
-            <span className="text-[13px] font-semibold tracking-[0.34em] text-[#2a2622]">
+            <span className="text-[12px] sm:text-[13px] font-semibold tracking-[0.34em] text-[#2a2622]">
               HELLO, I&rsquo;M
             </span>
             <span className="mt-2 h-[3px] w-12 rounded-full bg-[#7d1f24]" />
@@ -474,7 +474,7 @@ const Hero = () => {
         </div>
 
         {/* name */}
-        <div className="relative isolate mt-5">
+        <div className="relative isolate mt-4 sm:mt-5">
           <span
             aria-hidden
             className="watermark pointer-events-none absolute left-[-3%] top-1/2 -z-10 -translate-y-1/2 select-none font-black leading-none"
@@ -548,7 +548,7 @@ const Hero = () => {
         </div>
 
         {/* divider */}
-        <div className="reveal mt-6 flex w-full max-w-[440px] items-center gap-3" style={{ animationDelay: '0.3s' }}>
+        <div className="reveal mt-5 sm:mt-6 flex w-full max-w-[280px] sm:max-w-[440px] items-center gap-2 sm:gap-3" style={{ animationDelay: '0.3s' }}>
           <span className="h-px flex-1 bg-gradient-to-r from-transparent to-[rgba(42,38,34,0.28)]" />
           <span className="h-2 w-2 rounded-full bg-[#7d1f24]" />
           <span className="h-px flex-1 bg-gradient-to-l from-transparent to-[rgba(42,38,34,0.28)]" />
@@ -556,8 +556,8 @@ const Hero = () => {
 
         {/* role */}
         <p
-          className="reveal ff-mono mt-6 flex items-center gap-3 font-medium text-[#2a2622]"
-          style={{ animationDelay: '0.36s', fontSize: 'clamp(1.05rem,2.5vw,1.9rem)' }}
+          className="reveal ff-mono mt-4 sm:mt-6 flex items-center gap-2 sm:gap-3 font-medium text-[#2a2622] px-4"
+          style={{ animationDelay: '0.36s', fontSize: 'clamp(0.95rem,2.5vw,1.9rem)' }}
         >
           <span className="text-[#7d1f24]">&lt;</span>
           <RotatingRole />
@@ -566,7 +566,7 @@ const Hero = () => {
 
         {/* location */}
         <div
-          className="reveal mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[14.5px] text-[#4a443c]"
+          className="reveal mt-4 sm:mt-5 flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-4 gap-y-2 text-[13px] sm:text-[14.5px] text-[#4a443c] px-4"
           style={{ animationDelay: '0.42s' }}
         >
           <span className="inline-flex items-center gap-1.5">
@@ -581,30 +581,30 @@ const Hero = () => {
         </div>
 
         {/* CTAs */}
-        <div className="reveal mt-9 flex flex-wrap items-center justify-center gap-4" style={{ animationDelay: '0.48s' }}>
+        <div className="reveal mt-9 flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-sm:px-4" style={{ animationDelay: '0.48s' }}>
           <Link
             to="/work"
-            className="group inline-flex items-center gap-2 rounded-xl bg-[#7d1f24] px-7 py-3.5 text-[15px] font-semibold text-[#f6f1e8] shadow-[0_14px_26px_-12px_rgba(125,31,36,.95)] transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-[#67191d] hover:shadow-[0_20px_32px_-12px_rgba(125,31,36,1)]"
+            className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#7d1f24] px-7 py-3.5 text-[15px] font-semibold text-[#f6f1e8] shadow-[0_14px_26px_-12px_rgba(125,31,36,.95)] transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-[#67191d] hover:shadow-[0_20px_32px_-12px_rgba(125,31,36,1)] max-sm:w-full max-sm:min-h-[48px]"
           >
             Explore Projects
             <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1" />
           </Link>
           <Link
             to="/contact"
-            className="inline-flex items-center rounded-xl border border-[rgba(42,38,34,0.18)] bg-[#f4eee2]/50 px-7 py-3.5 text-[15px] font-semibold text-[#2a2622] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#7d1f24]/60 hover:bg-[rgba(122,46,58,0.04)]"
+            className="inline-flex items-center justify-center rounded-xl border border-[rgba(42,38,34,0.18)] bg-[#f4eee2]/50 px-7 py-3.5 text-[15px] font-semibold text-[#2a2622] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#7d1f24]/60 hover:bg-[rgba(122,46,58,0.04)] max-sm:w-full max-sm:min-h-[48px]"
           >
             Let&rsquo;s Connect
           </Link>
         </div>
 
         {/* tech pills */}
-        <div className="reveal mt-10 flex flex-col items-center gap-3" style={{ animationDelay: '0.54s' }}>
-          <div className="flex flex-wrap items-center justify-center gap-3">
+        <div className="reveal mt-8 sm:mt-10 flex flex-col items-center gap-2 sm:gap-3 px-4" style={{ animationDelay: '0.54s' }}>
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
             {techTop.map((t) => (
               <TechPill key={t} label={t} />
             ))}
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
             {techBottom.map((t) => (
               <TechPill key={t} label={t} />
             ))}
