@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NavLink, Link, useLocation, useNavigate } from 'react-router-dom';
-import { X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 const navLinks = [
   { name: 'About',    to: '/about'    },
@@ -127,22 +127,14 @@ const Navbar = () => {
               </Link>
             </div>
 
-            {/* Mobile menu button — 3-line hamburger */}
+            {/* Mobile menu button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden relative z-[110] p-2 min-h-[44px] min-w-[44px] flex flex-col items-center justify-center gap-[5px] transition-colors"
+              className="md:hidden relative z-[110] p-2 transition-colors"
               style={{ color: '#5B524A' }}
               aria-label={isOpen ? 'Close menu' : 'Open menu'}
             >
-              {isOpen ? (
-                <X size={20} />
-              ) : (
-                <span className="flex flex-col gap-[5px]" aria-hidden="true">
-                  <span className="block w-5 h-[2px] rounded-full bg-current transition-transform duration-200" />
-                  <span className="block w-5 h-[2px] rounded-full bg-current transition-opacity duration-200" />
-                  <span className="block w-5 h-[2px] rounded-full bg-current transition-transform duration-200" />
-                </span>
-              )}
+              {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </motion.nav>
