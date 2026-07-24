@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import SectionWrapper, { FadeInView } from '../components/ui/SectionWrapper';
 import { Code2, Globe, Server, FileCode, Briefcase, Target, GitFork } from 'lucide-react';
@@ -49,6 +49,15 @@ const milestones = [
 ];
 
 const Timeline = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 1024);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
   return (
     <SectionWrapper id="journey">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -63,9 +72,9 @@ const Timeline = () => {
         </FadeInView>
 
         <div className="relative max-w-4xl mx-auto">
-          <div className="absolute left-[22px] md:left-1/2 top-0 bottom-0 w-px bg-[rgba(47,42,38,0.08)] opacity-100 md:-translate-x-px" />
+          <div className="absolute left-[22px] lg:left-1/2 top-0 bottom-0 w-px bg-[rgba(47,42,38,0.08)] opacity-100 lg:-translate-x-px" />
 
-          <div className="space-y-10 md:space-y-12">
+          <div className="space-y-10 lg:space-y-12">
             {milestones.map((item, index) => {
               const Icon = item.icon;
               const isLeft = index % 2 === 0;
@@ -73,7 +82,7 @@ const Timeline = () => {
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
+                  initial={{ opacity: 0, x: isMobile ? 30 : (isLeft ? -30 : 30) }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: '-50px' }}
                   transition={{
@@ -81,14 +90,14 @@ const Timeline = () => {
                     delay: index * 0.08,
                     ease: [0.16, 1, 0.3, 1],
                   }}
-                  className={`relative flex items-center md:items-start gap-0 ${
+                  className={`relative flex items-center lg:items-start gap-0 ${
                     isLeft
-                      ? 'md:flex-row md:text-right'
-                      : 'md:flex-row-reverse md:text-left'
+                      ? 'lg:flex-row lg:text-right'
+                      : 'lg:flex-row-reverse lg:text-left'
                   }`}
                 >
                   <div
-                    className="absolute left-[22px] md:left-1/2 w-12 h-12 rounded-xl -translate-x-1/2 flex items-center justify-center border z-10 transition-colors duration-300"
+                    className="absolute left-[22px] lg:left-1/2 w-12 h-12 rounded-xl -translate-x-1/2 flex items-center justify-center border z-10 transition-colors duration-300"
                     style={{ backgroundColor: '#FFFFFF', borderColor: '#DDD6CE', color: item.color }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = item.color;
@@ -103,13 +112,13 @@ const Timeline = () => {
                   </div>
 
                   <div
-                    className={`ml-16 md:ml-0 md:w-[calc(50%-2.5rem)] ${
-                      isLeft ? 'md:mr-auto md:pr-10' : 'md:ml-auto md:pl-10'
+                    className={`ml-16 lg:ml-0 lg:w-[calc(50%-2.5rem)] ${
+                      isLeft ? 'lg:mr-auto lg:pr-10' : 'lg:ml-auto lg:pl-10'
                     }`}
                   >
                     <div
                       className={`inline-block px-2.5 py-0.5 rounded-md text-xs font-bold tracking-wide mb-2 ${
-                        isLeft ? 'md:ml-auto' : ''
+                        isLeft ? 'lg:ml-auto' : ''
                       }`}
                       style={{
                         backgroundColor: `${item.color}18`,

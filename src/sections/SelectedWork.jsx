@@ -136,7 +136,7 @@ const FeaturedProject = ({ project }) => {
                   <Wrench size={32} className="text-[#6A2634] group-hover:scale-110 transition-transform duration-700 -mt-2" />
                 </div>
               </div>
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+              <div className="absolute inset-0 bg-black/60 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                 <a
                   href={project.github}
                   target="_blank"
@@ -204,7 +204,7 @@ const FeaturedProject = ({ project }) => {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-sm font-medium text-text-secondary hover:text-text-primary opacity-0 group-hover:opacity-100 transition-all duration-400 delay-100"
+                  className="flex items-center gap-1.5 text-sm font-medium text-text-secondary hover:text-text-primary lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-400 delay-100"
                 >
                   <Github size={15} />
                   View Code
@@ -213,7 +213,7 @@ const FeaturedProject = ({ project }) => {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="ml-auto flex items-center gap-1 text-sm font-medium text-accent-blue hover:text-accent-blue/80 opacity-0 group-hover:opacity-100 transition-all duration-400 delay-200"
+                  className="ml-auto flex items-center gap-1 text-sm font-medium text-accent-blue hover:text-accent-blue/80 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-400 delay-200"
                 >
                   Case Study
                   <ArrowUpRight size={13} />
@@ -261,7 +261,7 @@ const ProjectCard = ({ project, index }) => {
               <p className="text-[11px] mt-1" style={{ color: project.accent, opacity: 0.7 }}>{project.category}</p>
             </div>
             </div>
-            <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+            <div className="absolute inset-0 bg-black/60 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
               <a
                 href={project.github}
                 target="_blank"
@@ -315,7 +315,7 @@ const ProjectCard = ({ project, index }) => {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-xs font-medium text-text-secondary hover:text-text-primary transition-colors duration-300"
+                className="flex items-center gap-1.5 text-xs font-medium text-text-secondary hover:text-text-primary transition-colors duration-300 py-2"
               >
                 <Github size={14} />
                 Code
@@ -325,7 +325,7 @@ const ProjectCard = ({ project, index }) => {
                   href={project.live}
                   target="_blank"
                   rel="noopener noreferrer"
-className="flex items-center gap-1.5 text-xs font-medium text-text-secondary hover:text-text-primary transition-colors duration-300"
+className="flex items-center gap-1.5 text-xs font-medium text-text-secondary hover:text-text-primary transition-colors duration-300 py-2"
               >
                 <ExternalLink size={14} />
                 Live Demo
