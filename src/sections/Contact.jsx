@@ -136,7 +136,7 @@ const Contact = () => {
                   </p>
                   <a
                     href="mailto:amdevanand206@gmail.com?subject=Project Inquiry"
-                    className="relative inline-flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-full text-sm font-semibold text-white overflow-hidden group"
+                    className="relative inline-flex items-center justify-center gap-2 w-full px-6 py-3.5 min-h-[48px] rounded-full text-sm font-semibold text-white overflow-hidden group"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-accent-blue via-accent-purple to-accent-pink opacity-90" />
                     <div className="absolute -inset-1 bg-gradient-to-r from-accent-blue via-accent-purple to-accent-pink opacity-0 group-hover:opacity-50 blur-lg transition-opacity duration-300" />
@@ -171,7 +171,7 @@ const Contact = () => {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="flex items-center gap-6"
+                className="flex items-center justify-center flex-wrap gap-4 sm:gap-6"
               >
                 {navLinks.map((link) => (
                   <a

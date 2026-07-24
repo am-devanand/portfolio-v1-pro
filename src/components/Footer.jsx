@@ -30,7 +30,7 @@ const Footer = () => {
           </NavLink>
 
           {/* Nav links */}
-          <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+          <nav className="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-x-5">
             {navLinks.map(link => (
               <NavLink
                 key={link.label}
