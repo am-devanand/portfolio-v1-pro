@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { NavLink, Link, useLocation } from 'react-router-dom';
+import { NavLink, Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 const navLinks = [
@@ -16,6 +16,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen]     = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location                = useLocation();
+  const navigate                = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -28,6 +29,20 @@ const Navbar = () => {
     setIsOpen(false);
     window.scrollTo(0, 0);
   }, [location.pathname]);
+
+  // Body scroll lock when drawer is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
+  const closeMenu = () => setIsOpen(false);
 
   return (
     <>
@@ -125,65 +140,95 @@ const Navbar = () => {
         </motion.nav>
       </div>
 
-      {/* Mobile menu overlay */}
+      {/* Mobile drawer */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[90] md:hidden"
-          >
-            <div
-              className="absolute inset-0"
-              style={{ background: 'rgba(255, 255, 255, 0.97)', backdropFilter: 'blur(32px)' }}
-              onClick={() => setIsOpen(false)}
-            />
+          <>
+            {/* Backdrop */}
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 24 }}
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="relative flex flex-col items-center justify-center h-full gap-1 px-6"
+              key="mobile-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="fixed inset-0 z-[90] md:hidden"
+              style={{ background: 'rgba(0, 0, 0, 0.3)' }}
+              onClick={closeMenu}
+              aria-hidden="true"
+            />
+
+            {/* Drawer panel */}
+            <motion.div
+              key="mobile-drawer"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 28, stiffness: 300 }}
+              className="fixed top-0 right-0 h-full w-[280px] max-w-[85vw] z-[95] md:hidden overflow-y-auto"
+              style={{
+                background: 'rgba(252, 251, 248, 0.98)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+              }}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mobile navigation"
             >
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.name}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.06, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              {/* Close button */}
+              <div className="flex justify-end pt-5 pr-5">
+                <button
+                  onClick={closeMenu}
+                  className="p-2 rounded-full transition-colors hover:bg-black/5 min-h-[48px] min-w-[48px] flex items-center justify-center"
+                  style={{ color: '#5B524A' }}
+                  aria-label="Close menu"
                 >
+                  <X size={22} />
+                </button>
+              </div>
+
+              {/* Navigation links */}
+              <div className="flex flex-col px-6 mt-2 gap-1">
+                {navLinks.map((link) => (
                   <NavLink
+                    key={link.name}
                     to={link.to}
-                    onClick={() => setIsOpen(false)}
+                    onClick={closeMenu}
                     className={({ isActive }) =>
-                      `block text-2xl font-heading font-semibold py-2 cursor-pointer text-center transition-all duration-300 hover:scale-105 ${
-                        isActive ? 'text-[#7A2E3A]' : 'text-[#57534E] hover:text-[#2F2A26]'
+                      `relative flex items-center min-h-[48px] px-4 rounded-lg text-base font-medium transition-all duration-200 ${
+                        isActive
+                          ? 'text-[#7A2E3A] bg-[#7A2E3A]/5'
+                          : 'text-[#57534E] hover:text-[#7A2E3A] hover:bg-black/5'
                       }`
                     }
                   >
-                    {link.name}
+                    {({ isActive }) => (
+                      <>
+                        <span className="flex-1">{link.name}</span>
+                        {isActive && (
+                          <span
+                            className="w-1 h-5 rounded-full shrink-0"
+                            style={{ background: '#7A2E3A' }}
+                          />
+                        )}
+                      </>
+                    )}
                   </NavLink>
-                </motion.div>
-              ))}
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-8"
-              >
+                ))}
+              </div>
+
+              {/* Mobile CTA */}
+              <div className="px-6 mt-6 pb-8">
                 <Link
                   to="/contact"
-                  onClick={() => setIsOpen(false)}
-                  className="btn-glow relative inline-flex items-center justify-center gap-1.5 px-8 py-3.5 rounded-[20px] text-base font-semibold text-white overflow-hidden cursor-pointer"
+                  onClick={closeMenu}
+                  className="btn-glow relative inline-flex items-center justify-center gap-1.5 w-full px-8 py-3.5 rounded-[20px] text-base font-semibold text-white overflow-hidden cursor-pointer"
                 >
                   <span className="relative z-10 text-white">Let&apos;s Connect</span>
                   <ArrowUpRight size={16} className="relative z-10 text-white" />
                 </Link>
-              </motion.div>
+              </div>
             </motion.div>
-          </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>
